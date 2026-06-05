@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Создаём архив
+        run: |
+          mkdir -p /tmp/ElvUI_TransmogCollect
+          cp -r . /tmp/ElvUI_TransmogCollect/
+          rm -rf /tmp/ElvUI_TransmogCollect/.git
+          rm -rf /tmp/ElvUI_TransmogCollect/.github
+          rm -rf /tmp/ElvUI_TransmogCollect/.vscode
+          cd /tmp
+          zip -r $GITHUB_WORKSPACE/ElvUI_TransmogCollect.zip ElvUI_TransmogCollect/
+
+      - name: Создаём Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ElvUI_TransmogCollect.zip
+          generate_release_notes: true

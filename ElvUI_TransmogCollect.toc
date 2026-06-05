@@ -1,0 +1,8 @@
+~~## Interface: 30300
+## Title: ElvUI TransmogCollect
+## Author: Exnode
+## Version: 1.0
+## Notes: Adds a "Collect Transmog" button to the ElvUI bag toolbar.
+## RequiredDeps: ElvUI
+
+ElvUI_TransmogCollect.lua
